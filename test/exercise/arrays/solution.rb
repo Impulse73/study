@@ -3,48 +3,47 @@ module Exercise
     class << self
       def replace(array)
         max = find_max(array)
-        result = array.map {|num| num < 0 ? num : max}
-        return result
+        result = array.map { |num| num < 0 ? num : max }
       end
-      
-      def search(_array, _query)
-        if _array.is_a?(Array)
-          len = _array.length
-          return binary_search(_array,0, len - 1, _query)
+
+      def search(array, query)
+        if array.is_a?(Array)
+          len = array.length
+          binary_search(array, 0, len - 1, query)
         else
-          if _array == _query
-            return 0
+          if array == query
+            0
           else
-            return -1 
+            -1
           end
         end
       end
-      
-      #search maximum element in array
+
+      # search maximum element in array
       def find_max(array)
         if array.length == 1
-           return array[0]
+          array[0]
         else
            mid = array.length / 2
-           leftmax = find_max(array[0,mid])
-           rightmax = find_max(array[mid,array.length])
+           leftmax = find_max(array[0, mid])
+           rightmax = find_max(array[mid, array.length])
            if leftmax > rightmax
-              return leftmax
+             leftmax
            else
-              return rightmax
-           end  
+             rightmax
+           end
         end
       end
-      #binary search if array = true
-      def binary_search arr,l,r,x
-        if r >= l
-          mid = l + (r - l) / 2
-          if arr[mid] == x
+      # binary search if array = true
+      def binary_search(arr, left, right, val)
+        if right >= left
+          mid = left + (right - left) / 2
+          if arr[mid] == val
             return mid
-          elsif arr[mid] > x
-            return binary_search(arr,l,mid - 1,x)
+          elsif arr[mid] > val
+            return binary_search(arr, left, mid - 1, val)
           else
-            return binary_search(arr,mid + 1,r,x)
+            return binary_search(arr, mid + 1, right, val)
           end
         end
         return -1

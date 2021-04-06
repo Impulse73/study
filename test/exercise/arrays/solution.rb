@@ -2,7 +2,8 @@ module Exercise
   module Arrays
     class << self
       def replace(array)
-        max = find_max(array)
+        max = array[0]
+        array.each { |num| num > max ? (max = num) : (0) }
         result = array.map { |num| num < 0 ? num : max }
       end
 
@@ -19,21 +20,6 @@ module Exercise
         end
       end
 
-      # search maximum element in array
-      def find_max(array)
-        if array.length == 1
-          array[0]
-        else
-           mid = array.length / 2
-           leftmax = find_max(array[0, mid])
-           rightmax = find_max(array[mid, array.length])
-           if leftmax > rightmax
-             leftmax
-           else
-             rightmax
-           end
-        end
-      end
       # binary search if array = true
       def binary_search(arr, left, right, val)
         if right >= left

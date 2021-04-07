@@ -3,7 +3,7 @@ module Exercise
     class << self
       def replace(array)
         max = array[0]
-        array.each { |num| num > max ? (max = num) : (0) }
+        array.each { |num| max = num if num > max }
         result = array.map { |num| num < 0 ? num : max }
       end
 

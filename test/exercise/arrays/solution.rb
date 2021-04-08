@@ -8,16 +8,8 @@ module Exercise
       end
 
       def search(array, query)
-        if array.is_a?(Array)
           len = array.length
           binary_search(array, 0, len - 1, query)
-        else
-          if array == query
-            0
-          else
-            -1
-          end
-        end
       end
 
       # binary search if array = true

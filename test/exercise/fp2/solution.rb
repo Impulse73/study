@@ -11,7 +11,7 @@ module Exercise
 
         head, *tail = array
 
-        yield head
+        func.call(head)
 
         MyArray.new(tail).my_each(&func)
 
